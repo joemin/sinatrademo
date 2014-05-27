@@ -1,13 +1,18 @@
 require 'sinatra'
 
 get '/' do
-  toPrint = ""
+  arr = Array.new
   counter = 1
+  toPrint = ""
+
   File.open('cake.list', 'r') do |f1|
     while temp = f1.gets
-      toPrint = toPrint + counter.to_s + ") " + temp + "<br>"
+      arr << counter.to_s + ") " + temp + "<br>"
       counter += 1
     end
+  end
+  while arr.empty? == false
+    toPrint += arr.shift
   end
   toPrint
 end
