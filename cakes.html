@@ -7,16 +7,13 @@
 </head>
   <body>
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script>
-    document.write("<ol>")
+      <script>
       $.getJSON("/cakeList.json", function(data) { 
-        $.each(data, function(index, element) {
-          document.write("<li>")
-          document.write(element)
-          document.write("</li>")
-        });
-      }); 
-    document.write("</ol>")
-    </script>
+          $.each(data, function(index, element) {
+            document.write(element.id + ". ")
+            document.write(element.name + "<br>")
+          });
+        }); 
+      </script>
   </body>
 </html>
