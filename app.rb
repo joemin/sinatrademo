@@ -1,18 +1,20 @@
 require 'sinatra'
+require 'json'
 
 get '/' do
+  File.read('cakes.html')
+end
+
+get '/cakeList.json' do
+  content_type :json
   arr = Array.new
-  counter = 1
   toPrint = ""
 
   File.open('cake.list', 'r') do |f1|
     while temp = f1.gets
-      arr << counter.to_s + ") " + temp + "<br>"
-      counter += 1
+      arr << temp.strip
     end
   end
-  while arr.empty? == false
-    toPrint += arr.shift
-  end
-  toPrint
+
+  arr.to_json
 end
