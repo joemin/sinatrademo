@@ -8,12 +8,29 @@
   <body>
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
       <script>
-      $.getJSON("/cakeList.json", function(data) { 
-          $.each(data, function(index, element) {
-            document.write(element.id + ". ")
-            document.write(element.name + "<br>")
-          });
+
+      $.getJSON("/pastries.json", function(data) {
+        document.write("<h2>Cakes</h2>")
+        document.write("<table>")
+        $.each(data.Cakes, function(index, element) {
+          document.write("<tr class='popup' data='" + element.description + "'><td>" + element.name + "</td><td>")
+          document.write("<img src=" + element.imageURL + "></td></tr>")
+        });
+        document.write("</table>")
+
+        document.write("<h2>Pies</h2>")
+        document.write("<table>")
+        $.each(data.Pies, function(index, element) {
+          document.write("<tr class='popup' data='" + element.description + "'><td>" + element.name + "</td><td>")
+          document.write("<img src=" + element.imageURL + "></td></tr>")
+        });
+        document.write("</table>")
+
+        $( ".popup" ).on( "click", function() {
+          alert($(this).attr('data'));
         }); 
+
+      });
       </script>
   </body>
 </html>
